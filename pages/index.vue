@@ -1,4 +1,51 @@
 <template>
+  <div>
+    <h3>Cars</h3>
+    <!-- <ul>
+      <li v-for="car in allCars">
+        <nuxt-link :to="`car/${car.id}`">
+          {{ car.year }} {{ car.make }} {{ car.model }}
+        </nuxt-link>
+      </li>
+    </ul> -->
+    <pre>
+      {{NeighborhoodMapList}}
+    </pre>
+  </div>
+</template>
+
+<script>
+import NeighborhoodMapList from '~/apollo/queries/NeighborhoodMapList'
+export default {
+  apollo: {
+    NeighborhoodMapList: {
+      prefetch: true,
+      query: NeighborhoodMapList
+    }
+  },
+  head: {
+    title: 'Cars with Apollo'
+  }
+}
+</script>
+
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+a {
+  text-decoration: none;
+  color: #3498DB;
+}
+a:hover {
+  border-bottom: 1px solid;
+}
+</style>
+
+<!-- <template>
   <section class="container">
     <div>
       <logo/>
@@ -55,4 +102,4 @@ export default {
 .links {
   padding-top: 15px;
 }
-</style>
+</style> -->

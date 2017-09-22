@@ -24,7 +24,6 @@ module.exports = {
   ** Customize the progress bar color
   */
   loading: { color: '#3B8070' },
-  plugins: ['~/plugins/vue-localstorage'],
   /*
   ** Build configuration
   */
@@ -47,5 +46,11 @@ module.exports = {
         $: 'jquery'
       })
     ]
+  },
+  modules: ['@nuxtjs/apollo'],
+  apollo: {
+    networkInterfaces: {
+      default: '~/apollo/network-interfaces/default.js'
+    }
   }
 }
