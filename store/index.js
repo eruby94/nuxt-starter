@@ -7,30 +7,7 @@ Vue.use(Vuex)
 
 const store = () => {
   return new Vuex.Store({
-    state: {
-      lists: [
-        {
-          title: 'Things To Do',
-          items: [],
-          isInEdit: false,
-          newTitle: 'Things To Do'
-        },
-        {
-          title: 'In-Progress',
-          items: [],
-          isInEdit: false,
-          newTitle: 'In-Progress'
-        },
-        {
-          title: 'Completed',
-          items: [],
-          isInEdit: false,
-          newTitle: 'Completed'
-        }
-      ],
-      archive: [],
-      showModal: false
-    },
+    state: {},
     mutations: mutations,
     actions: actions
   })
