@@ -19,29 +19,18 @@
         {
           "modules": false,
           "targets": {
-            "browsers": [
-              "> 1%",
-              "last 2 versions",
-              "not ie <= 8"
-            ]
+            "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
           }
         }
       ],
       "stage-2"
     ],
-    "plugins": [
-      "transform-runtime",
-      "transform-object-rest-spread"
-    ]
+    "plugins": ["transform-runtime", "transform-object-rest-spread"]
   },
   "dependencies": {
     "@nuxtjs/apollo": "^2.1.1",
-    "apollo-client": "^1.9.3",
-    "graphql-tag": "^2.4.2",
-    "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.2.1",
     "nuxt": "^1.0.0-rc11",
-    "vue-apollo": "^2.1.0-rc.5",
     "vue-localstorage": "^0.4.2",
     "vuedraggable": "^2.14.1"
   },
