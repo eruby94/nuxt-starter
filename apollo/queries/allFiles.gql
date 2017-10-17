@@ -1,0 +1,8 @@
+{
+  allFiles {
+    id
+    url
+    name
+    contentType
+  }
+}

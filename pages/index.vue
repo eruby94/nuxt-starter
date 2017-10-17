@@ -1,100 +1,107 @@
 <template>
-  <div>
-    <h3>Cars</h3>
-    <ul>
-      <li v-for="item in NeighborhoodMapList.mapListItems">
-        {{item}}
+  <div class="container">
+    <h2 class="user-title">Users</h2>
+    <ul v-for="user in allUsers" class="user-list">
+      <li>
+        <strong>Name: </strong> {{user.firstName + ' ' + user.lastName}}
+      </li>
+      <li>
+        <strong>Email: </strong> {{user.email}}
+      </li>
+      <li>
+        <strong>Role: </strong> {{user.role}}
       </li>
     </ul>
+    <h2 class="user-title">Files</h2>
+    <div v-for="file in allFiles" class="file-card">
+      <img v-if="file.contentType !== 'application/pdf'" :src="file.url" class="image"/>
+      <object v-else :data="file.url + '#zoom=1'" type="application/pdf" height="205" class="pdf-container">
+        alt : <a :href="file.url">{{file.url}}</a>
+      </object>
+      <p class="filename">{{shortenName(file.name)}}</p>
+    </div>
   </div>
 </template>
 
 <script>
-import NeighborhoodMapList from '~/apollo/queries/NeighborhoodMapList'
+import allUsers from '../apollo/queries/allUsers'
+import allFiles from '../apollo/queries/allFiles'
 export default {
   apollo: {
-    NeighborhoodMapList: {
+    allUsers: {
       prefetch: true,
-      query: NeighborhoodMapList
+      query: allUsers
+    },
+    allFiles: {
+      prefetch: true,
+      query: allFiles
     }
   },
   head: {
-    title: 'Cars with Apollo'
-  }
-}
-</script>
-
-<style>
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  line-height: 1.6;
-}
-a {
-  text-decoration: none;
-  color: #3498DB;
-}
-a:hover {
-  border-bottom: 1px solid;
-}
-</style>
-
-<!-- <template>
-  <section class="container">
-    <div>
-      <logo/>
-      <h1 class="title">
-        nuxt-starter
-      </h1>
-      <h2 class="subtitle">
-        Nuxt.js project
-      </h2>
-      <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">Documentation</a>
-        <a href="https://github.com/nuxt/nuxt.js" target="_blank" class="button--grey">GitHub</a>
-      </div>
-    </div>
-  </section>
-</template>
-
-<script>
-import Logo from '~/components/Logo.vue'
-
-export default {
-  components: {
-    Logo
+    title: 'Bedrock Users'
+  },
+  methods: {
+    shortenName(fileName) {
+      return fileName.length > 20 ? fileName.substring(0, 30) + '...' : fileName
+    }
   }
 }
 </script>
 
 <style>
 .container {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-left: 2em;
+}
+
+.user-list {
+  margin: 1em 1em;
+  padding: 0;
+  line-height: 1.6;
+}
+
+.user-title {
+  color: #E15A33;
+}
+
+.file-card {
+  display: inline-block;
+  width: 25%;
+  border: 1px solid grey;
+  border-radius: 3px;
+  margin: 1em;
+  padding: 0.25em;
   text-align: center;
 }
 
-.title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
+.image {
+  width: 74%;
+  height: auto;
+  margin-left: 13%;
   display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+  border: 1px solid grey;
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+.pdf-container {
+  width: 76%;
+  margin-left: 12%;
+  display: block;
+  border: 1px solid grey;
 }
 
-.links {
-  padding-top: 15px;
+.filename {
+  margin-top: 1em;
 }
-</style> -->
+
+strong {
+  color: #164734;
+}
+
+a {
+  text-decoration: none;
+  color: #3498DB;
+}
+
+a:hover {
+  border-bottom: 1px solid;
+}
+</style>

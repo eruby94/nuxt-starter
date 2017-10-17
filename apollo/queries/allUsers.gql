@@ -1,0 +1,8 @@
+{
+  allUsers {
+    firstName
+    lastName
+    email
+    role
+  }
+}
